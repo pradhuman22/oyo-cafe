@@ -38,17 +38,25 @@ const Header = () => {
           />
         </Link>
         {/* nagivation section */}
-        <nav className="flex w-full max-w-[calc(50vw+440px)] items-center justify-between">
-          <div className="hidden items-center justify-center md:flex">
-            <Button variant={"ghost"} className="text-lg font-medium">
-              <Link href={"#cafe-menu"}>Cafe Menu</Link>
-            </Button>
-            <Button variant={"ghost"} className="text-lg font-medium">
-              <Link href={"#about-us"}>About Us</Link>
-            </Button>
-            <Button variant={"ghost"} className="text-lg font-medium">
-              <Link href={"#find-us"}>Find Us</Link>
-            </Button>
+        <nav className="flex w-full max-w-[calc(50vw+410px)] items-center justify-between">
+          <div>
+            <ul className="text-primary/80 hidden items-center justify-center gap-6 text-xl font-medium md:flex">
+              <li>
+                <Link href={"#cafe-menu"} className="hover:text-primary">
+                  Cafe Menu
+                </Link>
+              </li>
+              <li>
+                <Link href={"#about-us"} className="hover:text-primary">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href={"#find-us"} className="hover:text-primary">
+                  Find Us
+                </Link>
+              </li>
+            </ul>
           </div>
           <div>
             <Button className={"text-lg font-medium"}>
