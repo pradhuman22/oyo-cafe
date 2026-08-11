@@ -23,7 +23,7 @@ const Header = () => {
         }
       )}
     >
-      <div className="flex h-24 items-center justify-between gap-4 px-4 md:px-6">
+      <div className="flex h-20 items-center justify-between gap-4 px-4 md:px-6">
         {/* logo section */}
         <Link href={"/"} className="flex items-center gap-2">
           <Image
@@ -38,7 +38,7 @@ const Header = () => {
           />
         </Link>
         {/* nagivation section */}
-        <nav className="flex w-full max-w-[calc(50vw+410px)] items-center justify-between">
+        <nav className="flex w-full max-w-[calc(50vw+415px)] items-center justify-between">
           <div>
             <ul className="text-primary/80 hidden items-center justify-center gap-6 text-xl font-medium md:flex">
               <li>
