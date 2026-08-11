@@ -1,5 +1,5 @@
+import MainWrapper from "@/components/shared/main-wrapper";
+
 export default function Home() {
-  return (
-  <div>Homepage</div>
-  );
+  return <MainWrapper>Homepage</MainWrapper>;
 }
