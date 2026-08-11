@@ -271,22 +271,22 @@ export function MenuSection() {
         </div>
 
         {/* Category Navigation Tabs */}
-        <div className="border-border flex flex-wrap items-center justify-center gap-6 border-b pb-4 text-sm md:gap-10 md:text-base">
+        <div className="no-scrollbar border-border flex items-center justify-start gap-4 overflow-x-auto border-b pb-3 text-sm sm:justify-center sm:gap-8 md:gap-10 md:text-base">
           {categories.map((category) => {
             const isActive = activeCategory === category;
             return (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`relative pb-4 font-medium transition-colors ${
+                className={`relative shrink-0 pb-3 font-medium whitespace-nowrap transition-colors ${
                   isActive
                     ? "text-primary"
-                    : "text-secondary-foreground/90 hover:text-secondary-foreground"
+                    : "text-muted-foreground hover:text-secondary-foreground"
                 }`}
               >
                 {category}
                 {isActive && (
-                  <span className="bg-primary absolute right-0 bottom-0 left-0 -mb-4.25 h-0.5" />
+                  <span className="bg-primary absolute right-0 bottom-0 left-0 -mb-3.25 h-0.5" />
                 )}
               </button>
             );
