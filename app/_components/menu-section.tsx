@@ -253,73 +253,93 @@ export function MenuSection() {
   const currentItems = menuData[activeCategory] || [];
 
   const handleAddToCart = (item: MenuItem) => {
-    // Add your cart logic here
     console.log("Added to cart:", item.name);
   };
 
   return (
     <section
-      className="text-foreground relative overflow-hidden py-20 font-sans"
+      className="relative overflow-hidden py-18 font-sans"
       id="cafe-menu"
     >
-      <div className="mx-auto max-w-5xl space-y-12">
-        {/* Header */}
-        <div className="space-y-3 text-center">
-          <h2 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
+      <div className="space-y-6">
+        {/* Header with Title and Mobile Dropdown side-by-side */}
+        <div className="flex items-center justify-between gap-4 px-2 sm:px-0">
+          <h2 className="text-foreground text-2xl font-bold tracking-tight sm:text-4xl">
             Cafe Menu
           </h2>
+
+          {/* Mobile Dropdown View on Right */}
+          <div className="sm:hidden">
+            <select
+              id="category-select"
+              value={activeCategory}
+              onChange={(e) => setActiveCategory(e.target.value)}
+              className="border-border focus:ring-primary text-foreground focus:border-primary rounded-lg border bg-white px-3 py-2 text-xs font-medium shadow-sm focus:ring-2 focus:outline-none"
+            >
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        {/* Category Navigation Tabs */}
-        <div className="no-scrollbar border-border flex items-center justify-start gap-4 overflow-x-auto border-b pb-3 text-sm sm:justify-center sm:gap-8 md:gap-10 md:text-base">
-          {categories.map((category) => {
-            const isActive = activeCategory === category;
-            return (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`relative shrink-0 pb-3 font-medium whitespace-nowrap transition-colors ${
-                  isActive
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-secondary-foreground"
-                }`}
-              >
-                {category}
-                {isActive && (
-                  <span className="bg-primary absolute right-0 bottom-0 left-0 -mb-3.25 h-0.5" />
-                )}
-              </button>
-            );
-          })}
+        {/* Desktop Tab View */}
+        <div className="hidden sm:block">
+          <div className="no-scrollbar border-border flex items-center justify-start gap-6 overflow-x-auto border-b pb-3 text-base md:text-lg lg:gap-10">
+            {categories.map((category) => {
+              const isActive = activeCategory === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`relative shrink-0 pb-3 font-medium whitespace-nowrap transition-colors ${
+                    isActive
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {category}
+                  {isActive && (
+                    <span className="bg-primary absolute right-0 bottom-0 left-0 -mb-3.25 h-0.5" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Menu Items Grid (2 Columns) */}
-        <div className="grid grid-cols-1 gap-x-16 gap-y-8 pt-4 md:grid-cols-2">
+        {/* Menu Items List - Card Stack Style for Mobile, 2-Column Grid for Desktop */}
+        <div className="grid grid-cols-1 gap-4 pt-2 sm:gap-6 md:grid-cols-2">
           {currentItems.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className="border-border flex items-start justify-between gap-4 border-b border-dashed pb-6"
+              className="border-border flex flex-col justify-between space-y-3 rounded-xl border p-4 shadow-sm transition-shadow hover:shadow-md sm:p-5"
             >
-              <div className="space-y-1 pr-4">
-                <h3 className="text-foreground text-base font-semibold md:text-lg">
-                  {item.name}
-                </h3>
-                <p className="text-secondary-foreground text-xs font-light md:text-sm">
+              <div className="space-y-1">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-foreground text-base leading-snug font-semibold sm:text-lg">
+                    {item.name}
+                  </h3>
+                  <span className="text-primary shrink-0 text-base font-bold sm:text-lg">
+                    {item.price}
+                  </span>
+                </div>
+                <p className="text-muted-foreground text-xs leading-relaxed font-light sm:text-sm">
                   {item.description}
                 </p>
-                <span className="text-secondary-foreground inline-block pt-1 text-[11px] font-medium tracking-wider uppercase">
-                  {item.calories}
-                </span>
               </div>
-              <div className="flex h-full shrink-0 flex-col items-end justify-between gap-3">
-                <span className="text-primary text-lg font-bold md:text-xl">
-                  {item.price}
+
+              <div className="border-border flex items-center justify-between border-t pt-2">
+                <span className="text-muted-foreground rounded px-2 py-0.5 text-[11px] font-medium tracking-wider uppercase">
+                  {item.calories}
                 </span>
                 <button
                   onClick={() => handleAddToCart(item)}
-                  className="bg-primary text-primary-foreground hover:bg-primary rounded px-3 py-1.5 text-xs font-medium tracking-wide shadow-sm transition-colors"
+                  className="bg-primary text-background hover:bg-primary flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium tracking-wide shadow-sm transition-all active:scale-95"
                 >
-                  Add to cart
+                  <span>Add to cart</span>
                 </button>
               </div>
             </div>
