@@ -23,8 +23,8 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="mx-auto w-full max-w-4xl px-3">
-      <nav className="flex flex-col items-center justify-center gap-4 border-t py-6 md:flex-row md:justify-between">
+    <footer className="mx-auto w-full max-w-4xl">
+      <nav className="flex flex-col items-center justify-center gap-4 border-t p-3 md:flex-row md:justify-between">
         <ul className="flex items-center gap-6 text-base">
           {footerMenus.map((menu, idx) => (
             <li key={idx}>
