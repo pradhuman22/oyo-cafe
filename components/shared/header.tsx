@@ -59,7 +59,7 @@ const Header = () => {
             </ul>
           </div>
           <div>
-            <Button className={"text-lg font-medium"}>
+            <Button className={"text-lg font-medium capitalize"}>
               <Link href={"#offer"}>Offer Available</Link>
             </Button>
           </div>

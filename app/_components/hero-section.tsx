@@ -8,7 +8,7 @@ import { IconStarFilled } from "@tabler/icons-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative grid items-center gap-10 overflow-hidden py-20 md:grid-cols-2">
+    <section className="relative grid items-center gap-10 overflow-hidden py-16 md:grid-cols-2">
       {/* content section */}
       <div className="flex flex-col items-center text-center md:items-start md:text-left">
         <Badge className="bg-accent text-accent-foreground mb-4 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm capitalize">
@@ -26,7 +26,7 @@ const HeroSection = () => {
         </p>
 
         <div className="mb-8 grid gap-4 md:flex md:items-center">
-          <Button className="h-11 px-4 text-lg font-medium">
+          <Button className="h-11 px-4 text-lg font-medium capitalize">
             <Link href={"/cafe-menu"}>Explore the Menu</Link>
           </Button>
         </div>
