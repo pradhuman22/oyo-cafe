@@ -2,14 +2,25 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 96);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <header
       className={cn(
-        "bg-background sticky top-0 z-50 transition-all duration-150 ease-in-out"
+        "bg-background sticky top-0 z-50 transition-all duration-150 ease-in-out",
+        {
+          "bg-background/95 border-b backdrop-blur-md": isScrolled,
+        }
       )}
     >
       <div className="flex h-24 items-center justify-between gap-4 px-4 md:px-6">
@@ -30,25 +41,19 @@ const Header = () => {
         <nav className="flex w-full max-w-[calc(50vw+400px)] items-center justify-between">
           <div>
             <div className="hidden items-center justify-center md:flex">
-              <Button variant={"ghost"}>
-                <Link href={"#cafe-menu"} className="text-base font-medium">
-                  Cafe Menu
-                </Link>
+              <Button variant={"ghost"} className="text-lg font-medium">
+                <Link href={"#cafe-menu"}>Cafe Menu</Link>
               </Button>
-              <Button variant={"ghost"}>
-                <Link href={"#about-us"} className="text-base font-medium">
-                  About Us
-                </Link>
+              <Button variant={"ghost"} className="text-lg font-medium">
+                <Link href={"#about-us"}>About Us</Link>
               </Button>
-              <Button variant={"ghost"}>
-                <Link href={"#find-us"} className="text-base font-medium">
-                  Find Us
-                </Link>
+              <Button variant={"ghost"} className="text-lg font-medium">
+                <Link href={"#find-us"}>Find Us</Link>
               </Button>
             </div>
           </div>
           <div>
-            <Button>
+            <Button className={"text-lg font-medium"}>
               <Link href={"#offer"}>Offer Available</Link>
             </Button>
           </div>
