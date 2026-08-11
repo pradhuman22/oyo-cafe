@@ -21,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         "h-full scroll-smooth font-sans antialiased",
         oxanium.variable
       )}
+      data-scroll-behavior="smooth"
     >
       <body className="flex min-h-full flex-col">
         <Header />
