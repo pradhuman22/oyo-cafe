@@ -2,21 +2,25 @@ import Image from "next/image";
 import { IconClock, IconToolsKitchen } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import AnimateOnScroll from "@/components/shared/animate-on-scroll";
 
 const AboutUsSection = () => {
   return (
     <section id="about-us" className="py-18">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         {/* image section */}
-        <div className="relative flex h-100 w-full items-center justify-center overflow-hidden rounded-2xl border shadow-xl md:h-120">
-          <Image
-            src={"/about.png"}
-            alt="about-us"
-            sizes="(min-width: 780px) 418px, calc(90.65vw - 27px)"
-            fill
-            priority
-          />
-        </div>
+        <AnimateOnScroll variant={"fade-right"}>
+          <div className="relative flex h-100 w-full items-center justify-center overflow-hidden rounded-2xl border shadow-xl md:h-120">
+            <Image
+              src={"/about.png"}
+              alt="about-us"
+              sizes="(min-width: 780px) 418px, calc(90.65vw - 27px)"
+              fill
+              priority
+            />
+          </div>
+        </AnimateOnScroll>
+
         <div className="w-full space-y-6">
           <div className="space-y-3">
             <span className="border-primary text-primary inline-block rounded-full border px-3 py-1 text-sm font-semibold tracking-wider uppercase">
