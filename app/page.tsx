@@ -2,6 +2,7 @@ import MainWrapper from "@/components/shared/main-wrapper";
 import HeroSection from "./_components/hero-section";
 import AboutUsSection from "./_components/about-us-section";
 import { MenuSection } from "./_components/menu-section";
+import { TestimonialsSection } from "./_components/testimonials-section";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <HeroSection />
       <AboutUsSection />
       <MenuSection />
+      <TestimonialsSection />
     </MainWrapper>
   );
 }
