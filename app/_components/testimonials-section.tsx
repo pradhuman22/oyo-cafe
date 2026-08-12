@@ -195,6 +195,7 @@ export function TestimonialsSection() {
                           fill
                           className="object-cover"
                           sizes="(min-width: 780px) 500px, calc(100vw - 24px)"
+                          loading="eager"
                         />
                       )}
                     </div>

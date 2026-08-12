@@ -11,7 +11,7 @@ interface MenuItem {
 }
 
 const menuData: Record<string, MenuItem[]> = {
-  "Noodles / Chowmein / Rice": [
+  Noodles: [
     {
       id: "1",
       name: "Keema Noodles",
@@ -28,7 +28,7 @@ const menuData: Record<string, MenuItem[]> = {
     },
     {
       id: "3",
-      name: "Chicken / Buff Chowmein",
+      name: "Chicken/Buff Chowmein",
       description: "Stir-fried noodles with choice of chicken or buffalo meat",
       calories: "420 CAL",
       price: "Rs. 150",
@@ -47,72 +47,76 @@ const menuData: Record<string, MenuItem[]> = {
       calories: "460 CAL",
       price: "Rs. 200",
     },
+  ],
+  Rice: [
     {
-      id: "6",
+      id: "1",
       name: "Veg Fried Rice",
       description: "Wok-tossed aromatic rice with seasoned vegetables",
       calories: "380 CAL",
       price: "Rs. 130",
     },
     {
-      id: "7",
+      id: "2",
       name: "Egg Fried Rice",
       description: "Wok-tossed rice tossed with scrambled egg and scallions",
       calories: "410 CAL",
       price: "Rs. 150",
     },
     {
-      id: "8",
+      id: "3",
       name: "Chicken Fried Rice",
       description: "Flavorful fried rice loaded with tender chicken pieces",
       calories: "450 CAL",
       price: "Rs. 180",
     },
     {
-      id: "9",
+      id: "4",
       name: "Mix Fried Rice",
       description: "Comprehensive mix fried rice with assorted proteins",
       calories: "490 CAL",
       price: "Rs. 220",
     },
+  ],
+  "Soup & Thupa": [
     {
-      id: "10",
+      id: "1",
       name: "Veg Thukpa",
       description: "Hearty Himalayan noodle soup with mixed vegetables",
       calories: "310 CAL",
       price: "Rs. 140",
     },
     {
-      id: "11",
-      name: "Chicken / Buff Thukpa",
+      id: "2",
+      name: "Chicken/Buff Thukpa",
       description: "Warm noodle soup served with chicken or buffalo meat",
       calories: "380 CAL",
       price: "Rs. 160",
     },
     {
-      id: "12",
+      id: "3",
       name: "Mix Thukpa",
       description: "Loaded noodle broth with mixed meats and vegetables",
       calories: "420 CAL",
       price: "Rs. 200",
     },
     {
-      id: "13",
+      id: "4",
       name: "Wai Wai Soup",
       description: "Instant noodle soup cooked with special spices",
       calories: "290 CAL",
       price: "Rs. 100",
     },
     {
-      id: "14",
-      name: "Wai Wai Soup w/ Egg",
+      id: "5",
+      name: "Wai Wai Egg Soup",
       description: "Wai Wai soup topped with a cooked egg",
       calories: "350 CAL",
       price: "Rs. 120",
     },
     {
-      id: "15",
-      name: "Wai Wai Fry w/ Egg",
+      id: "6",
+      name: "Wai Wai Egg Fry",
       description: "Crunchy stir-fried Wai Wai noodles with egg",
       calories: "380 CAL",
       price: "Rs. 130",
@@ -121,28 +125,28 @@ const menuData: Record<string, MenuItem[]> = {
   "Mo:Mo": [
     {
       id: "16",
-      name: "Veg Mo:Mo (Steam / Fried / Jhol / Chilly)",
+      name: "Veg Mo:Mo (Steam/Fried/Jhol/Chilly)",
       description: "Traditional dumplings served in your choice of style",
       calories: "320 CAL",
       price: "Rs. 130 - 180",
     },
     {
       id: "17",
-      name: "Steam Chicken / Buff Mo:Mo",
+      name: "Steam Chicken/Buff Mo:Mo",
       description: "Delicately steamed dumplings stuffed with chicken or buff",
       calories: "360 CAL",
       price: "Rs. 150",
     },
     {
       id: "18",
-      name: "Fried Chicken / Buff Mo:Mo",
+      name: "Fried Chicken/Buff Mo:Mo",
       description: "Crispy pan-fried dumplings with chicken or buff filling",
       calories: "410 CAL",
       price: "Rs. 170",
     },
     {
       id: "19",
-      name: "Jhol Mo:Mo Chicken / Buff",
+      name: "Jhol Mo:Mo Chicken/Buff",
       description: "Dumplings submerged in flavorful traditional spiced broth",
       calories: "390 CAL",
       price: "Rs. 180",
@@ -192,7 +196,7 @@ const menuData: Record<string, MenuItem[]> = {
       price: "Rs. 200",
     },
   ],
-  "Burger & Sandwich": [
+  Burger: [
     {
       id: "26",
       name: "Chicken Burger",
@@ -202,7 +206,7 @@ const menuData: Record<string, MenuItem[]> = {
     },
     {
       id: "27",
-      name: "Chicken Burger w/ Cheese",
+      name: "Chicken Cheese Burger",
       description: "Chicken burger loaded with melted cheese slice",
       calories: "580 CAL",
       price: "Rs. 250",
@@ -216,7 +220,7 @@ const menuData: Record<string, MenuItem[]> = {
     },
     {
       id: "29",
-      name: "Veg Burger w/ Cheese",
+      name: "Veg Cheese Burger",
       description: "Vegetable burger topped with melted cheese",
       calories: "470 CAL",
       price: "Rs. 200",
@@ -246,9 +250,7 @@ const menuData: Record<string, MenuItem[]> = {
 };
 
 export function MenuSection() {
-  const [activeCategory, setActiveCategory] = useState<string>(
-    "Noodles / Chowmein / Rice"
-  );
+  const [activeCategory, setActiveCategory] = useState<string>("Noodles");
   const categories = Object.keys(menuData);
   const currentItems = menuData[activeCategory] || [];
 
@@ -294,7 +296,7 @@ export function MenuSection() {
                 <button
                   key={category}
                   onClick={() => setActiveCategory(category)}
-                  className={`relative shrink-0 pb-3 font-medium whitespace-nowrap transition-colors ${
+                  className={`relative shrink-0 cursor-pointer pb-3 font-medium whitespace-nowrap transition-colors ${
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"

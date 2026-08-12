@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import { IconShoppingBag } from "@tabler/icons-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,7 +59,14 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="flex items-center gap-4">
+            <Button
+              size={"icon-lg"}
+              variant={"secondary"}
+              className={"cursor-pointer rounded-full"}
+            >
+              <IconShoppingBag className="size-6" aria-label="shopping bag" />
+            </Button>
             <Button className={"text-lg font-medium capitalize"}>
               <Link href={"#offer"}>Offer Available</Link>
             </Button>
