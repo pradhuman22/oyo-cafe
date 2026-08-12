@@ -31,7 +31,7 @@ const Header = () => {
             alt="joy cafe and cloud kitchen"
             width={40}
             height={40}
-            className="h-10 w-10 object-cover md:-mt-2.5"
+            className="h-auto w-auto object-cover md:-mt-2.5"
             priority
             quality={75}
             aria-label="joy cafe and cloud kitchen"

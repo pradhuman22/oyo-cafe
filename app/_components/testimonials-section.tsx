@@ -152,6 +152,7 @@ export function TestimonialsSection() {
                             alt={item.name}
                             fill
                             className="object-cover"
+                            sizes="(min-width: 780px) 500px, calc(100vw - 24px)"
                           />
                         </div>
                         <div>
@@ -193,37 +194,11 @@ export function TestimonialsSection() {
                           alt="Featured dish"
                           fill
                           className="object-cover"
+                          sizes="(min-width: 780px) 500px, calc(100vw - 24px)"
                         />
                       )}
                     </div>
-
                     {/* Floating Product / Review Card */}
-                    {item.highlightCard && (
-                      <div className="absolute right-4 -bottom-6 left-4 space-y-2 rounded-xl border border-zinc-100 bg-white/95 p-5 shadow-xl backdrop-blur-md sm:right-auto sm:left-8 sm:w-80">
-                        <div className="flex items-center justify-between">
-                          <h4 className="text-base font-semibold text-zinc-900">
-                            {item.highlightCard.title}
-                          </h4>
-                          <span className="text-base font-bold text-amber-600">
-                            {item.highlightCard.price}
-                          </span>
-                        </div>
-
-                        {/* Rating Stars */}
-                        <div className="flex items-center gap-1 text-amber-500">
-                          {[...Array(item.rating)].map((_, i) => (
-                            <IconStar
-                              key={i}
-                              className="h-4 w-4 fill-current"
-                            />
-                          ))}
-                        </div>
-
-                        <p className="line-clamp-2 text-xs leading-relaxed font-light text-zinc-500">
-                          {item.highlightCard.description}
-                        </p>
-                      </div>
-                    )}
                   </div>
                 </div>
               </CarouselItem>
