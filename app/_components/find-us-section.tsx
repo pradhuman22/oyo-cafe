@@ -117,7 +117,7 @@ export function FindUsSection() {
         </div>
 
         {/* Map Embed Card */}
-        <div className="bg-card border-border min-h-[350px] overflow-hidden rounded-3xl border shadow-sm lg:col-span-7 lg:min-h-[auto]">
+        <div className="bg-card border-border min-h-87.5 overflow-hidden rounded-3xl border shadow-sm lg:col-span-7 lg:min-h-auto">
           <iframe
             title="Joy Cafe Location Map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.4519782531065!2d85.31995831506198!3d27.705829932204786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391eb192a1a2b7b7%3A0x7d0a27cb4a4b4b0!2sKathmandu%20Nepal!5e0!3m2!1sen!2snp!4v1650000000000!5m2!1sen!2snp"
