@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
+import { CartProvider } from "@/context/cart-context";
 
 const oxanium = Oxanium({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,9 +25,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
     >
       <body className="flex min-h-full flex-col">
-        <Header />
-        <main className="flex-1 grow">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main className="flex-1 grow">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

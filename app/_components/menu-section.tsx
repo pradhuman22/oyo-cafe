@@ -1,14 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-interface MenuItem {
-  id: string;
-  name: string;
-  description: string;
-  calories: string;
-  price: string;
-}
+import { useCart, MenuItem } from "@/context/cart-context";
 
 const menuData: Record<string, MenuItem[]> = {
   Noodles: [
@@ -251,12 +244,10 @@ const menuData: Record<string, MenuItem[]> = {
 
 export function MenuSection() {
   const [activeCategory, setActiveCategory] = useState<string>("Noodles");
+  const { addToCart } = useCart();
+
   const categories = Object.keys(menuData);
   const currentItems = menuData[activeCategory] || [];
-
-  const handleAddToCart = (item: MenuItem) => {
-    console.log("Added to cart:", item.name);
-  };
 
   return (
     <section
@@ -312,7 +303,7 @@ export function MenuSection() {
           </div>
         </div>
 
-        {/* Menu Items List - Card Stack Style for Mobile, 2-Column Grid for Desktop */}
+        {/* Menu Items List */}
         <div className="grid grid-cols-1 gap-4 pt-2 sm:gap-6 md:grid-cols-2">
           {currentItems.map((item, index) => (
             <div
@@ -338,8 +329,18 @@ export function MenuSection() {
                   {item.calories}
                 </span>
                 <button
-                  onClick={() => handleAddToCart(item)}
-                  className="bg-primary text-background hover:bg-primary flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium tracking-wide shadow-sm transition-all active:scale-95"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    addToCart(item);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    addToCart(item);
+                  }}
+                  className="bg-primary text-background hover:bg-primary/90 flex cursor-pointer touch-manipulation items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium tracking-wide shadow-sm transition-all active:scale-95"
                 >
                   <span>Add to cart</span>
                 </button>

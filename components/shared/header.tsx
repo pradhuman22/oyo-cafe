@@ -5,9 +5,12 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { IconShoppingBag } from "@tabler/icons-react";
+import { useCart } from "@/context/cart-context";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { totalItemsCount } = useCart();
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 96);
@@ -15,6 +18,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <header
       className={cn(
@@ -38,7 +42,7 @@ const Header = () => {
             aria-label="joy cafe and cloud kitchen"
           />
         </Link>
-        {/* nagivation section */}
+        {/* navigation section */}
         <nav className="flex w-full max-w-[calc(50vw+415px)] items-center justify-between">
           <div>
             <ul className="text-primary/80 hidden items-center justify-center gap-6 text-xl font-medium md:flex">
@@ -63,9 +67,16 @@ const Header = () => {
             <Button
               size={"icon-lg"}
               variant={"secondary"}
-              className={"cursor-pointer rounded-full"}
+              className={"relative cursor-pointer rounded-full"}
             >
-              <IconShoppingBag className="size-6" aria-label="shopping bag" />
+              <Link href={"/checkout-cart"}>
+                <IconShoppingBag className="size-6" aria-label="shopping bag" />
+                {totalItemsCount > 0 && (
+                  <span className="bg-primary text-background absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold shadow">
+                    {totalItemsCount}
+                  </span>
+                )}
+              </Link>
             </Button>
             <Button className={"text-lg font-medium capitalize"}>
               <Link href={"#offer"}>Offer Available</Link>
