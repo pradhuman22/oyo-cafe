@@ -1,253 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart, MenuItem } from "@/context/cart-context";
-
-const menuData: Record<string, MenuItem[]> = {
-  Noodles: [
-    {
-      id: "1",
-      name: "Keema Noodles",
-      description: "Savory spiced minced meat tossed with noodles",
-      calories: "480 CAL",
-      price: "Rs. 200",
-    },
-    {
-      id: "2",
-      name: "Veg Chowmein",
-      description: "Stir-fried noodles with fresh garden vegetables",
-      calories: "350 CAL",
-      price: "Rs. 130",
-    },
-    {
-      id: "3",
-      name: "Chicken/Buff Chowmein",
-      description: "Stir-fried noodles with choice of chicken or buffalo meat",
-      calories: "420 CAL",
-      price: "Rs. 150",
-    },
-    {
-      id: "4",
-      name: "Egg Chowmein",
-      description: "Classic stir-fried noodles tossed with scrambled egg",
-      calories: "390 CAL",
-      price: "Rs. 140",
-    },
-    {
-      id: "5",
-      name: "Mix Chowmein",
-      description: "Special combination mix of noodles, meat, and eggs",
-      calories: "460 CAL",
-      price: "Rs. 200",
-    },
-  ],
-  Rice: [
-    {
-      id: "1",
-      name: "Veg Fried Rice",
-      description: "Wok-tossed aromatic rice with seasoned vegetables",
-      calories: "380 CAL",
-      price: "Rs. 130",
-    },
-    {
-      id: "2",
-      name: "Egg Fried Rice",
-      description: "Wok-tossed rice tossed with scrambled egg and scallions",
-      calories: "410 CAL",
-      price: "Rs. 150",
-    },
-    {
-      id: "3",
-      name: "Chicken Fried Rice",
-      description: "Flavorful fried rice loaded with tender chicken pieces",
-      calories: "450 CAL",
-      price: "Rs. 180",
-    },
-    {
-      id: "4",
-      name: "Mix Fried Rice",
-      description: "Comprehensive mix fried rice with assorted proteins",
-      calories: "490 CAL",
-      price: "Rs. 220",
-    },
-  ],
-  "Soup & Thupa": [
-    {
-      id: "1",
-      name: "Veg Thukpa",
-      description: "Hearty Himalayan noodle soup with mixed vegetables",
-      calories: "310 CAL",
-      price: "Rs. 140",
-    },
-    {
-      id: "2",
-      name: "Chicken/Buff Thukpa",
-      description: "Warm noodle soup served with chicken or buffalo meat",
-      calories: "380 CAL",
-      price: "Rs. 160",
-    },
-    {
-      id: "3",
-      name: "Mix Thukpa",
-      description: "Loaded noodle broth with mixed meats and vegetables",
-      calories: "420 CAL",
-      price: "Rs. 200",
-    },
-    {
-      id: "4",
-      name: "Wai Wai Soup",
-      description: "Instant noodle soup cooked with special spices",
-      calories: "290 CAL",
-      price: "Rs. 100",
-    },
-    {
-      id: "5",
-      name: "Wai Wai Egg Soup",
-      description: "Wai Wai soup topped with a cooked egg",
-      calories: "350 CAL",
-      price: "Rs. 120",
-    },
-    {
-      id: "6",
-      name: "Wai Wai Egg Fry",
-      description: "Crunchy stir-fried Wai Wai noodles with egg",
-      calories: "380 CAL",
-      price: "Rs. 130",
-    },
-  ],
-  "Mo:Mo": [
-    {
-      id: "16",
-      name: "Veg Mo:Mo (Steam/Fried/Jhol/Chilly)",
-      description: "Traditional dumplings served in your choice of style",
-      calories: "320 CAL",
-      price: "Rs. 130 - 180",
-    },
-    {
-      id: "17",
-      name: "Steam Chicken/Buff Mo:Mo",
-      description: "Delicately steamed dumplings stuffed with chicken or buff",
-      calories: "360 CAL",
-      price: "Rs. 150",
-    },
-    {
-      id: "18",
-      name: "Fried Chicken/Buff Mo:Mo",
-      description: "Crispy pan-fried dumplings with chicken or buff filling",
-      calories: "410 CAL",
-      price: "Rs. 170",
-    },
-    {
-      id: "19",
-      name: "Jhol Mo:Mo Chicken/Buff",
-      description: "Dumplings submerged in flavorful traditional spiced broth",
-      calories: "390 CAL",
-      price: "Rs. 180",
-    },
-    {
-      id: "20",
-      name: "Chilly Mo:Mo",
-      description: "Tossed in a spicy, tangy, and savory chili glaze",
-      calories: "440 CAL",
-      price: "Rs. 190",
-    },
-    {
-      id: "21",
-      name: "Special Chicken Keema Jhol Mo:Mo",
-      description: "Juicy chicken keema dumplings served in rich jhol gravy",
-      calories: "510 CAL",
-      price: "Rs. 250",
-    },
-  ],
-  Roll: [
-    {
-      id: "22",
-      name: "Chicken Roll",
-      description: "Juicy spiced chicken wrapped in a soft flatbread",
-      calories: "420 CAL",
-      price: "Rs. 150",
-    },
-    {
-      id: "23",
-      name: "Egg Roll",
-      description: "Scrambled egg wrapped with fresh veggies and sauces",
-      calories: "360 CAL",
-      price: "Rs. 120",
-    },
-    {
-      id: "24",
-      name: "Paneer Roll",
-      description: "Marinated paneer chunks wrapped in a warm roll",
-      calories: "390 CAL",
-      price: "Rs. 150",
-    },
-    {
-      id: "25",
-      name: "Chicken + Egg Roll",
-      description: "Combination wrap packed with chicken and egg",
-      calories: "480 CAL",
-      price: "Rs. 200",
-    },
-  ],
-  Burger: [
-    {
-      id: "26",
-      name: "Chicken Burger",
-      description: "Classic burger with savory chicken patty and crisp lettuce",
-      calories: "520 CAL",
-      price: "Rs. 200",
-    },
-    {
-      id: "27",
-      name: "Chicken Cheese Burger",
-      description: "Chicken burger loaded with melted cheese slice",
-      calories: "580 CAL",
-      price: "Rs. 250",
-    },
-    {
-      id: "28",
-      name: "Veg Burger",
-      description: "Plant-based vegetable patty with fresh greens",
-      calories: "410 CAL",
-      price: "Rs. 150",
-    },
-    {
-      id: "29",
-      name: "Veg Cheese Burger",
-      description: "Vegetable burger topped with melted cheese",
-      calories: "470 CAL",
-      price: "Rs. 200",
-    },
-    {
-      id: "30",
-      name: "Veg Sandwich",
-      description: "Freshly layered vegetable sandwich with spread",
-      calories: "290 CAL",
-      price: "Rs. 100",
-    },
-    {
-      id: "31",
-      name: "Egg Sandwich",
-      description: "Simple and delicious egg-filled sandwich",
-      calories: "340 CAL",
-      price: "Rs. 120",
-    },
-    {
-      id: "32",
-      name: "Chicken Sandwich",
-      description: "Filled with seasoned shredded chicken and dressing",
-      calories: "410 CAL",
-      price: "Rs. 140",
-    },
-  ],
-};
+import { IconLoader2 } from "@tabler/icons-react";
 
 export function MenuSection() {
-  const [activeCategory, setActiveCategory] = useState<string>("Noodles");
+  const [menuData, setMenuData] = useState<Record<string, MenuItem[]>>({});
+  const [activeCategory, setActiveCategory] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    async function fetchMenu() {
+      try {
+        const res = await fetch("/api/menu");
+        const data = await res.json();
+        if (data && !data.error) {
+          setMenuData(data);
+          const firstCategory = Object.keys(data)[0];
+          if (firstCategory) {
+            setActiveCategory(firstCategory);
+          }
+        }
+      } catch (error) {
+        console.error("Error loading menu:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchMenu();
+  }, []);
 
   const categories = Object.keys(menuData);
   const currentItems = menuData[activeCategory] || [];
+
+  if (isLoading) {
+    return (
+      <section className="flex min-h-75 items-center justify-center py-18">
+        <div className="text-muted-foreground flex items-center gap-2">
+          <IconLoader2 className="text-primary size-6 animate-spin" />
+          <span className="text-sm font-medium">Loading menu items...</span>
+        </div>
+      </section>
+    );
+  }
+
+  if (categories.length === 0) {
+    return null;
+  }
 
   return (
     <section
