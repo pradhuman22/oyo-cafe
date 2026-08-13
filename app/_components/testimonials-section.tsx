@@ -16,6 +16,7 @@ import {
   IconQuote,
   IconStar,
 } from "@tabler/icons-react";
+import AnimateOnScroll from "@/components/shared/animate-on-scroll";
 
 interface Testimonial {
   id: string;
@@ -187,19 +188,20 @@ export function TestimonialsSection() {
 
                   {/* Right Column: Dish Image & Overlay Highlight Card */}
                   <div className="relative lg:col-span-6">
-                    <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg sm:h-100">
-                      {item.dishImage && (
-                        <Image
-                          src={item.dishImage}
-                          alt="Featured dish"
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 780px) 500px, calc(100vw - 24px)"
-                          loading="eager"
-                        />
-                      )}
-                    </div>
-                    {/* Floating Product / Review Card */}
+                    <AnimateOnScroll variant={"zoom-out"}>
+                      <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg sm:h-100">
+                        {item.dishImage && (
+                          <Image
+                            src={item.dishImage}
+                            alt="Featured dish"
+                            fill
+                            className="object-cover"
+                            sizes="(min-width: 780px) 500px, calc(100vw - 24px)"
+                            loading="eager"
+                          />
+                        )}
+                      </div>
+                    </AnimateOnScroll>
                   </div>
                 </div>
               </CarouselItem>

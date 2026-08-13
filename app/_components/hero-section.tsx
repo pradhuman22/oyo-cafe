@@ -27,7 +27,7 @@ const HeroSection = () => {
 
         <div className="mb-8 grid gap-4 md:flex md:items-center">
           <Button className="h-11 px-4 text-lg font-medium capitalize">
-            <Link href={"/cafe-menu"}>Explore the Menu</Link>
+            <Link href={"/#cafe-menu"}>Explore the Menu</Link>
           </Button>
         </div>
       </div>

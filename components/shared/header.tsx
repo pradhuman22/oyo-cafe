@@ -47,17 +47,22 @@ const Header = () => {
           <div>
             <ul className="text-primary/80 hidden items-center justify-center gap-6 text-xl font-medium md:flex">
               <li>
-                <Link href={"#cafe-menu"} className="hover:text-primary">
+                <Link href={"/#cafe-menu"} className="hover:text-primary">
                   Cafe Menu
                 </Link>
               </li>
               <li>
-                <Link href={"#about-us"} className="hover:text-primary">
+                <Link href={"/#about-us"} className="hover:text-primary">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href={"#find-us"} className="hover:text-primary">
+                <Link href={"/#offer"} className="hover:text-primary">
+                  Todays Offer
+                </Link>
+              </li>
+              <li>
+                <Link href={"/#find-us"} className="hover:text-primary">
                   Find Us
                 </Link>
               </li>
@@ -78,9 +83,9 @@ const Header = () => {
                 )}
               </Link>
             </Button>
-            <Button className={"text-lg font-medium capitalize"}>
+            {/* <Button className={"text-lg font-medium capitalize"}>
               <Link href={"#offer"}>Offer Available</Link>
-            </Button>
+            </Button> */}
           </div>
         </nav>
       </div>
