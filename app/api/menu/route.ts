@@ -13,7 +13,7 @@ export async function GET() {
       );
     }
 
-    const response = await fetch(SHEET_CSV_URL, { next: { revalidate: 60 } }); // Cache for 60 seconds
+    const response = await fetch(SHEET_CSV_URL, { cache: "no-store" }); // Cache for 60 seconds
     const csvText = await response.text();
 
     // 2. Parse CSV rows (Expected columns: category, id, name, description, calories, price)
