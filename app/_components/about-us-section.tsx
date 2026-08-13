@@ -41,7 +41,7 @@ const AboutUsSection = () => {
           </div>
           <div>
             <Button>
-              <Link href={"/about-us"}>Read more..</Link>
+              <Link href={"/#offer"}>Check Offer</Link>
             </Button>
           </div>
           {/* <ul className="space-y-4">
